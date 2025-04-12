@@ -1,23 +1,42 @@
-import mongoose from "mongoose"
+import mongoose, { Schema } from "mongoose";
 
-const bookSchema = new mongoose.Schema({
+const bookSchema = new Schema({
     title: {
         type: String,
-        required: [true, "Book title is required"],
-        trim: true,
-        maxLength: [100, "Book title can not be more than 100 characters"],
+        required: true,
+        trim: true
+    },
+    image: {
+      type: {
+          public_id: String,
+          url: String //cloudinary url
       },
-      author: {
+    },
+    author: {
         type: String,
-        required: [true, "Author name is required"],
-        trim: true,
-      },
-      year: {
+        required: true,
+        trim: true
+    },
+    description: {
+        type: String,
+        required: true,
+        trim: true
+    },
+    price: {
         type: Number,
-        required: [true, "Publication year is required"],
-        min: [1000, "Year must be atleast 1000"],
-        max: [new Date().getFullYear(), "Year cannot be in the future"],
-      },
-},{timestamps:true})
+        required: true,
+        min: [0, "Price must be positive"]
+    },
+    stock: {
+        type: Number,
+        required: true,
+        min: [0, "Stock cannot be negative"]
+    },
+    genre: {
+        type: String,
+        required: true,
+        trim: true
+    },
+}, { timestamps: true });
 
-export const Book = mongoose.model("Book",bookSchema)
+export const Book = mongoose.model("Book", bookSchema);
