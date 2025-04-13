@@ -3,28 +3,10 @@ import {ApiError} from "../utils/ApiError.js"
 import {ApiResponse} from "../utils/ApiResponse.js"
 import {Book, Book} from "../models/book.model.js"
 import {Cart } from "../models/cart.model.js"
-import { User } from "../models/user.model.js"
+import { verifyUser } from "../validators/user.validator.js"
 import { isValidObjectId } from "mongoose";
 
 
-
-
-const verifyUser = asyncHandler(async(userId)=>{
-    if(!userId){
-        throw new ApiError(404, "userId not received")
-    }
-    if(!isValidObjectId(userId)){
-        throw new ApiError(400,"User Id is not valid")
-    }
-
-    const user = await User.findById(userId)
-    if(!user){
-        throw new ApiError(404,"User not Found")
-    }
-    return user
-
-    
-})
 
 
 
