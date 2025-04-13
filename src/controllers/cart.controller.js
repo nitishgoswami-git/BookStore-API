@@ -1,7 +1,7 @@
 import {asyncHandler} from "../utils/asyncHandler.js"
 import {ApiError} from "../utils/ApiError.js"
 import {ApiResponse} from "../utils/ApiResponse.js"
-import {Book, Book} from "../models/book.model.js"
+import { Book} from "../models/book.model.js"
 import {Cart } from "../models/cart.model.js"
 import { verifyUser } from "../validators/user.validator.js"
 import { isValidObjectId } from "mongoose";

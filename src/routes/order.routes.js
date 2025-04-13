@@ -3,7 +3,7 @@ import {
     getUserOrders,
     getOrderDetails,
     cancelOrder,
-    updateOrderStatus,
+    // updateOrderStatus,
     placeOrder
         } from "../controllers/order.controller.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js"

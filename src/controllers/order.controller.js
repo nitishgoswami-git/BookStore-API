@@ -172,6 +172,6 @@ export{
     getUserOrders,
     getOrderDetails,
     cancelOrder,
-    updateOrderStatus,
+    // updateOrderStatus,
     placeOrder   
 }
