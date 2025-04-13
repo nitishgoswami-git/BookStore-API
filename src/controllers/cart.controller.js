@@ -21,7 +21,8 @@ const getCart = asyncHandler(async(req,res)=>{
     const userId = req.user?._id
     await verifyUser(userId)
   
-    const cart = await Cart.findById(userId)
+    const cart = await Cart.findOne({userId})
+    console.log(cart)
 
     return res.status(200)
     .json(
@@ -56,9 +57,9 @@ const addItemToCart = asyncHandler(async (req, res) => {
         throw new ApiError(404, "Book not found");
     }
 
-    const cart = await Cart.findOne({ user: userId });
+    let cart = await Cart.findOne({ userId });
     if (!cart) {
-        cart = new Cart({ user: userId, items: [] });
+        cart = new Cart({ userId, items: [] });
     }
 
     const existingItem = cart.items.find(item => item.product.equals(bookId));
@@ -94,7 +95,7 @@ const removeItemFromCart = asyncHandler (async(req,res)=>{
     if(!isValidObjectId(bookId)){
         throw new ApiError(400,"BookId not valid")
     }  
-    const cart = await Cart.findOne({user: userId})
+    const cart = await Cart.findOne({userId})
     if(!cart){
         throw new ApiError(404,"Cart not found")
     }
