@@ -123,20 +123,24 @@ const clearCartItems = asyncHandler (async(req,res)=>{
     // 6. Send a success response with the updated cart
     const userId = req.user?._id
     await verifyUser(userId)
-    const cart = await Cart.findOne({user: userId})
+    const cart = await Cart.findOne({userId})
     if(!cart){
         throw new ApiError(404,"Cart not found")
     }
 
-    await Cart.findByIdAndUpdate(userId, { items: [], amount: 0 }, { new: true });
+    const updatedCart = await Cart.findByIdAndUpdate(
+        cart._id, 
+        { items: [], amount: 0 }, 
+        { new: true }
+    );
 
     return res.status(200).json(
         new ApiResponse(
-        200,
-        null,
-        "Cart cleared successfully"
-     )
-    )
+            200,
+            updatedCart, 
+            "Cart cleared successfully"
+        )
+    );
 })
 
 
