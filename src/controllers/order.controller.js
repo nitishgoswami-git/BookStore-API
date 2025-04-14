@@ -144,13 +144,18 @@ const placeOrder = asyncHandler(async (req, res) => {
     if (!cart.amount) {
         throw new ApiError(400, "Amount not provided");
     }
-    if (cart.user.toString() !== userId.toString()) {
+    if (cart.userId.toString() !== userId.toString()) {
+        console.log(cart.userId.toString(), userId.toString())
         throw new ApiError(403, "Permission Denied");
     }
     const items = cart.items.map(item => ({
         product: item.product,
         quantity: item.quantity
     }))
+
+    const { address } = user;
+    const { amount } = cart;
+
     const order = await Order.create({
         userId,
         items,
