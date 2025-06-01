@@ -73,19 +73,3 @@ Suppose your API runs at `http://localhost:3000`:
   `POST http://localhost:3000/api/users/register`
 - Place an order:  
   `POST http://localhost:3000/api/orders`
-
----
-
-## Summary
-
-- The API provides endpoints for books, users, and orders.
-- All endpoints are typically prefixed with `/api`.
-- For exact and up-to-date endpoints, check the `src/routes` directory in the repository.
-
-If you need a detailed list for a specific resource or want help with request/response formats, let me know!
-
-Citations:
-[1] https://github.com/nitishgoswami-git/BookStore-API
-
----
-Answer from Perplexity: pplx.ai/share
